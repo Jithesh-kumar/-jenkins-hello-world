@@ -9,6 +9,12 @@ pipeline{
                 sh "if ! command -v mvn; then echo 'Maven not found!;' exit 1; fi"
             }
         }
+        stage('Check Java') {
+    steps {
+        sh 'java -version'
+        sh 'echo $JAVA_HOME'
+    }
+}
         stage('Build'){
             steps{
                 git branch: 'main', url: 'https://github.com/Jithesh-kumar/-jenkins-hello-world.git'
