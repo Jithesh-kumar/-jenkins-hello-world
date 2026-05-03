@@ -2,6 +2,7 @@ pipeline{
     agent any
     tools{
         maven "maven-398"
+        jdk "jdk-21"
     }
     stages{
         stage('Check Maven'){
@@ -10,11 +11,12 @@ pipeline{
             }
         }
         stage('Check Java') {
-    steps {
-        sh 'java -version'
-        sh 'echo $JAVA_HOME'
-    }
-}
+            steps {
+                sh 'java -version'
+                sh 'javac -version'
+                sh 'echo $JAVA_HOME'
+            }
+        }
         stage('Build'){
             steps{
                 git branch: 'main', url: 'https://github.com/Jithesh-kumar/-jenkins-hello-world.git'
